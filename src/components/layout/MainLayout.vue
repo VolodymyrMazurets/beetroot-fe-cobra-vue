@@ -25,14 +25,14 @@ export default {
   align-items: stretch;
   flex: 1;
   &__nav {
-    width: 100%;
+    width: 300px;
     max-width: 300px;
     flex: 1;
     border-right: 1px solid black;
     padding: 32px 24px;
   }
   &__content {
-      padding: 32px 24px;
+    padding: 32px 24px;
     flex: 1;
     display: flex;
     & > * {
