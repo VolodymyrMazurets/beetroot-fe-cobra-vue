@@ -1,19 +1,23 @@
-import {routesNames, routesPath} from './routes'
+import { routesNames, routesPath } from "./routes";
 
-import Home from '../views/Home.vue'
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Home from "../views/Home.vue";
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-const Coctails = () => import(/* webpackChunkName: "coctails" */ '../views/Coctails.vue');
-const Coctail = () => import(/* webpackChunkName: "coctails" */ '../views/Coctail.vue');
+const Coctails = () =>
+  import(/* webpackChunkName: "coctails" */ "../views/Coctails.vue");
+const Coctail = () =>
+  import(/* webpackChunkName: "coctails" */ "../views/Coctail.vue");
+const Components = () =>
+  import(/* webpackChunkName: "components" */ "../views/Components.vue");
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: routesPath.home,
     name: routesNames.home,
-    component: Home
+    component: Home,
   },
   {
     path: routesPath.coctails,
@@ -24,13 +28,18 @@ const routes = [
     path: routesPath.coctail,
     name: routesNames.coctail,
     component: Coctail,
-  }
-]
+  },
+  {
+    path: routesPath.components,
+    name: routesNames.components,
+    component: Components,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
