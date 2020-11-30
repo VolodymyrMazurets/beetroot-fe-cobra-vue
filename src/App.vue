@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <main-layout>
-      <router-view />
+      <the-transition>
+        <router-view />
+      </the-transition>
     </main-layout>
   </div>
 </template>
@@ -17,7 +19,7 @@ export default {
 
 <style lang="scss">
 .app {
- min-height: 100vh;
- display: flex;
+  min-height: 100vh;
+  display: flex;
 }
 </style>
