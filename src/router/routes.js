@@ -3,6 +3,7 @@ export const routesNames = {
   coctails: "Coctails",
   coctail: "Coctail",
   components: "Components",
+  littleShop: "LittleShop",
 };
 
 export const routesPath = {
@@ -10,4 +11,5 @@ export const routesPath = {
   coctails: "/coctails",
   coctail: "/coctails/:id",
   components: "/components",
+  littleShop: "/little-shop",
 };

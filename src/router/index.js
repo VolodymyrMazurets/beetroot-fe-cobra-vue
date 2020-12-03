@@ -11,6 +11,9 @@ const Coctail = () =>
 const Components = () =>
   import(/* webpackChunkName: "components" */ "../views/Components.vue");
 
+const LittleShop = () =>
+  import(/* webpackChunkName: "littleShop" */ "../views/LittleShop.vue");
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -33,6 +36,11 @@ const routes = [
     path: routesPath.components,
     name: routesNames.components,
     component: Components,
+  },
+  {
+    path: routesPath.littleShop,
+    name: routesNames.littleShop,
+    component: LittleShop,
   },
 ];
 

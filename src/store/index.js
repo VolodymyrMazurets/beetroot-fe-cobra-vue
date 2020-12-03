@@ -1,6 +1,7 @@
+import { littleStore, randomCoctail } from "./modules";
+
 import Vue from "vue";
 import Vuex from "vuex";
-import { randomCoctail } from "./modules";
 
 Vue.use(Vuex);
 
@@ -10,5 +11,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     randomCoctail,
+    littleStore,
   },
 });
