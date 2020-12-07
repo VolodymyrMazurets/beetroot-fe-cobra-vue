@@ -4,6 +4,7 @@ export const routesNames = {
   coctail: "Coctail",
   components: "Components",
   littleShop: "LittleShop",
+  films: "Films",
 };
 
 export const routesPath = {
@@ -12,4 +13,5 @@ export const routesPath = {
   coctail: "/coctails/:id",
   components: "/components",
   littleShop: "/little-shop",
+  films: "/films",
 };

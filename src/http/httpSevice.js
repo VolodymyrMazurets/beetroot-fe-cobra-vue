@@ -1,4 +1,4 @@
-import { coctailsUrls } from "../http";
+import { coctailsUrls, filmsUrls } from "../http";
 
 class HttpSevice {
   _fetchData = async (url, config = {}) => {
@@ -7,7 +7,8 @@ class HttpSevice {
       const parsedRes = await res.json();
       return parsedRes;
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      return error
     }
   };
   getRandomCoctail = () => this._fetchData(coctailsUrls.random);
@@ -29,8 +30,8 @@ class HttpSevice {
   };
   getSearchCoctailsByName = (query) =>
     this._fetchData(`${coctailsUrls.search}${query}`);
-  getCoctilById= (id) =>
-    this._fetchData(`${coctailsUrls.lookup}${id}`);
+  getCoctilById = (id) => this._fetchData(`${coctailsUrls.lookup}${id}`);
+  getFilmsByQuery = (query, page) => this._fetchData(filmsUrls.search(query, page));
 }
 
 export const httpSevice = new HttpSevice();

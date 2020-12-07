@@ -81,6 +81,10 @@ export default {
           path: "/little-shop",
         },
         {
+          name: "Films",
+          path: "/films",
+        },
+        {
           name: "Components",
           path: "/components",
         },

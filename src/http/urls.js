@@ -1,5 +1,8 @@
 const BASE_COCTAILS_URL = "https://www.thecocktaildb.com/api/json/v1";
-const api_key = '1';
+const BASE_FILMS_URL = "http://www.omdbapi.com/";
+const api_key = "1";
+// const films_api_key = "79ac6";
+const films_api_key = "79ac68bc";
 
 const coctailsUrls = {
   random: `${BASE_COCTAILS_URL}/${api_key}/random.php`,
@@ -9,7 +12,11 @@ const coctailsUrls = {
   ingredients: `${BASE_COCTAILS_URL}/${api_key}/list.php?i=list`,
   alcoholic: `${BASE_COCTAILS_URL}/${api_key}/list.php?a=list`,
   lookup: `${BASE_COCTAILS_URL}/${api_key}/lookup.php?i=`,
-}
+};
 
+const filmsUrls = {
+  search: (query, page = 1) =>
+    `${BASE_FILMS_URL}?apikey=${films_api_key}&s=${query}&page=${page}`,
+};
 
-export { coctailsUrls };
+export { coctailsUrls, filmsUrls };

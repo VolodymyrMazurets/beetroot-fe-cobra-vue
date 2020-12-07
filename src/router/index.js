@@ -14,6 +14,9 @@ const Components = () =>
 const LittleShop = () =>
   import(/* webpackChunkName: "littleShop" */ "../views/LittleShop.vue");
 
+const Films = () =>
+  import(/* webpackChunkName: "films" */ "../views/Films.vue");
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,6 +44,11 @@ const routes = [
     path: routesPath.littleShop,
     name: routesNames.littleShop,
     component: LittleShop,
+  },
+  {
+    path: routesPath.films,
+    name: routesNames.films,
+    component: Films,
   },
 ];
 

@@ -1,4 +1,4 @@
-import { littleStore, randomCoctail } from "./modules";
+import { films, littleStore, randomCoctail } from "./modules";
 
 import Vue from "vue";
 import Vuex from "vuex";
@@ -12,5 +12,6 @@ export default new Vuex.Store({
   modules: {
     randomCoctail,
     littleStore,
+    films,
   },
 });
