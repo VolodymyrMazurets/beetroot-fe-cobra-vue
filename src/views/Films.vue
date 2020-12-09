@@ -23,7 +23,12 @@
         :key="film.imdbID"
         :flex="1"
       >
-        <a-card hoverable>
+        <a-card
+          hoverable
+          @click="
+            $router.push({ name: 'FilmDetails', params: { id: film.imdbID } })
+          "
+        >
           <img
             v-if="film.Poster && film.Poster !== 'N/A'"
             slot="cover"
@@ -43,13 +48,13 @@
     <a-pagination
       v-if="Number(totalResults) > 10"
       @change="handlePaginationChange"
-      v-model="page"
+      :current="page"
       :total="Number(totalResults)"
     />
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import IconPlaceholder from "../components/icons/IconPlaceholder";
 export default {
   name: "Films",
@@ -59,21 +64,28 @@ export default {
   data() {
     return {
       query: "",
-      page: 1,
     };
   },
   computed: {
-    ...mapState("films", ["loading", "films", "totalResults"]),
+    ...mapState("films", ["loading", "films", "totalResults", "page"]),
   },
   methods: {
     ...mapActions("films", ["getFilmsByQuery"]),
+    ...mapMutations("films", ["chagePage", "setInitialPage"]),
     handleSubmit() {
-      this.page = 1;
+      if (this.$route?.query?.search !== this.query) {
+        this.$router?.push({ name: "Films", query: { search: this.query } });
+      }
+      this.setInitialPage();
       this.getFilmsByQuery({ query: this.query, page: this.page });
     },
-    handlePaginationChange() {
+    handlePaginationChange(e) {
+      this.chagePage(e);
       this.getFilmsByQuery({ query: this.query, page: this.page });
     },
+  },
+  mounted() {
+    this.query = this.$route.query.search || "";
   },
 };
 </script>

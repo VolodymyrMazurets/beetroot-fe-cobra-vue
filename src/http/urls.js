@@ -17,6 +17,8 @@ const coctailsUrls = {
 const filmsUrls = {
   search: (query, page = 1) =>
     `${BASE_FILMS_URL}?apikey=${films_api_key}&s=${query}&page=${page}`,
+  filmDetails: (id) =>
+    `${BASE_FILMS_URL}?apikey=${films_api_key}&i=${id}&plot=true`,
 };
 
 export { coctailsUrls, filmsUrls };

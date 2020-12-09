@@ -5,6 +5,8 @@ import { message } from "ant-design-vue";
 const state = () => ({
   films: [],
   totalResults: null,
+  filmDetails: {},
+  page: 1,
   loading: false,
   error: false,
 });
@@ -25,6 +27,18 @@ const mutations = {
     state.films = [...payload.films];
     state.totalResults = payload.totalResults;
   },
+  filmDetailsUpdate(state, payload) {
+    state.filmDetails = { ...payload };
+  },
+  filmDetailsClear(state) {
+    state.filmDetails = {};
+  },
+  chagePage(state, payload) {
+    state.page = payload;
+  },
+  setInitialPage(state) {
+    state.page = 1;
+  },
 };
 const actions = {
   getFilmsByQuery: async ({ commit }, { query, page }) => {
@@ -43,6 +57,18 @@ const actions = {
         films: mapedData,
         totalResults: result?.totalResults,
       });
+    } else {
+      commit("filmsFailure");
+      message.error(result?.Error);
+    }
+  },
+  getFilmDetails: async ({ commit }, payload) => {
+    commit("filmDetailsClear");
+    commit("filmsRequest");
+    const result = await httpSevice.getFilmDetails(payload);
+    if (result.Response === "True") {
+      commit("filmsSuccess");
+      commit("filmDetailsUpdate", result);
     } else {
       commit("filmsFailure");
       message.error(result?.Error);

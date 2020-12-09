@@ -5,9 +5,16 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    lightTheme: null,
+  },
+  mutations: {
+    changeTheme(state, payload) {
+      state.lightTheme = payload;
+    },
+  },
   actions: {},
   modules: {
     randomCoctail,

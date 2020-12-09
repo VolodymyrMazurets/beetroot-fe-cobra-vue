@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <a-spin :spinning="loading" size="large">
+    <the-loader :loading="loading" size="large">
       <icon-placeholder slot="indicator" class="home__spinner" />
       <a-card hoverable style="width: 240px" @click="showModal">
         <img slot="cover" alt="" :src="coctail.strDrinkThumb" />
@@ -18,11 +18,7 @@
       >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-          accusamus provident sint esse est corrupti culpa, sed, beatae aliquid
-          quia rerum quas labore. Perspiciatis quo itaque voluptatibus tempore
-          adipisci consequatur amet neque assumenda. Quod, quae esse. Sint
-          iusto, iste repellat perspiciatis iure illo voluptate quibusdam rerum
-          nulla. Vel, dolorum incidunt?
+          accusamus provident sint esse est corrupti culpa, sed, beatae aliqui
         </p>
       </the-modal>
       <img
@@ -32,18 +28,16 @@
         @error="imageLoadError"
       />
       <img v-else src="https://picsum.photos/id/240/600/300" alt="" />
-    </a-spin>
+    </the-loader>
   </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
 import TheModal from "../components/common/TheModal";
-import IconPlaceholder from "../components/icons/IconPlaceholder";
 
 export default {
   components: {
     TheModal,
-    IconPlaceholder,
   },
   name: "Home",
   data() {

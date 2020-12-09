@@ -1,4 +1,8 @@
 
+
+$bg: var(--bg-color);
+$text: var(--text-color);
+
 @function px_to_rem($target, $context: $base-size) {
   @if $target==0 {
     @return 0;

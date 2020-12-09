@@ -32,6 +32,7 @@ class HttpSevice {
     this._fetchData(`${coctailsUrls.search}${query}`);
   getCoctilById = (id) => this._fetchData(`${coctailsUrls.lookup}${id}`);
   getFilmsByQuery = (query, page) => this._fetchData(filmsUrls.search(query, page));
+  getFilmDetails = (id) => this._fetchData(filmsUrls.filmDetails(id));
 }
 
 export const httpSevice = new HttpSevice();

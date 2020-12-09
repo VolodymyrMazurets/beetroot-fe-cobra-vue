@@ -9,6 +9,15 @@
         >{{ route.name }}</router-link
       >
     </li>
+    <li class="side-bar__item">
+      <a-switch
+        :checked="lightTheme"
+        @change="onChange"
+        :style="{ marginLeft: `${24}px` }"
+      >
+        <a-icon slot="checkedChildren" type="bulb" />
+      </a-switch>
+    </li>
     <li class="side-bar__item _cart" v-if="$route.name === 'LittleShop'">
       <a-badge :count="cart.length" :offset="[-10, 10]">
         <a-button
@@ -62,7 +71,7 @@
   </ul>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "SideBar",
   data() {
@@ -94,14 +103,21 @@ export default {
     };
   },
   computed: {
-    ...mapState("littleStore", ["cart"]),
+    ...mapState({
+      cart: ({ littleStore }) => littleStore.cart,
+      lightTheme: ({ lightTheme }) => lightTheme,
+    }),
   },
   methods: {
+    ...mapMutations(["changeTheme"]),
     handleClick() {
       this.visible = true;
     },
     handleOk() {
       this.visible = false;
+    },
+    onChange(checked) {
+      this.changeTheme(checked);
     },
   },
 };
@@ -127,7 +143,7 @@ export default {
     padding: 8px 24px;
     transition: 0.2s ease;
     transition-property: background-color, color, border-color;
-    color: black;
+    color: $text;
     border: 1px solid transparent;
     &:hover {
       border-color: rgb(255, 164, 45);
