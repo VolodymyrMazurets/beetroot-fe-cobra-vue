@@ -18,6 +18,17 @@
         <a-icon slot="checkedChildren" type="bulb" />
       </a-switch>
     </li>
+    <li class="side-bar__item _search">
+      <a-input placeholder="Search films" v-model="query" />
+      <a-button
+        :loading="loading"
+        type="primary"
+        class="side-bar__btn"
+        @click="handleSubmit"
+      >
+        Search
+      </a-button>
+    </li>
     <li class="side-bar__item _cart" v-if="$route.name === 'LittleShop'">
       <a-badge :count="cart.length" :offset="[-10, 10]">
         <a-button
@@ -71,7 +82,7 @@
   </ul>
 </template>
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   name: "SideBar",
   data() {
@@ -97,7 +108,12 @@ export default {
           name: "Components",
           path: "/components",
         },
+        {
+          name: "Contact Us",
+          path: "/contacts",
+        },
       ],
+      query: "",
       visible: false,
       container: null,
     };
@@ -106,10 +122,14 @@ export default {
     ...mapState({
       cart: ({ littleStore }) => littleStore.cart,
       lightTheme: ({ lightTheme }) => lightTheme,
+      loading: ({ films }) => films.loading,
+      page: ({ films }) => films.page,
     }),
   },
   methods: {
     ...mapMutations(["changeTheme"]),
+    ...mapActions("films", ["getFilmsByQuery"]),
+    ...mapMutations("films", ["chagePage", "setInitialPage"]),
     handleClick() {
       this.visible = true;
     },
@@ -118,6 +138,13 @@ export default {
     },
     onChange(checked) {
       this.changeTheme(checked);
+    },
+    handleSubmit() {
+      if (this.$route?.query?.search !== this.query) {
+        this.$router?.push({ name: "Films", query: { search: this.query } });
+      }
+      this.setInitialPage();
+      this.getFilmsByQuery({ query: this.query, page: this.page });
     },
   },
 };
@@ -132,6 +159,10 @@ export default {
       position: fixed;
       bottom: 20px;
       left: 110px;
+    }
+    &._search {
+      position: relative;
+      @include flex;
     }
   }
   &__item-link {

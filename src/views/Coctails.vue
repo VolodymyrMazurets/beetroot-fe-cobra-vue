@@ -1,6 +1,6 @@
 <template>
   <div class="coctails">
-    <h1>Coctails</h1>
+    <the-title :size="30" weight="700" color="#1890ff" :level="1">Coctails</the-title>
 
     <a-select
       ref="categoriesRef"
@@ -91,9 +91,13 @@
 </template>
 <script>
 import { httpSevice } from "../http";
+import TheTitle from "../components/common/TheTitle";
 
 export default {
   name: "Coctails",
+  components: {
+    TheTitle,
+  },
   data() {
     return {
       selectedFilter: "",

@@ -6,6 +6,7 @@ export const routesNames = {
   littleShop: "LittleShop",
   films: "Films",
   filmDetails: "FilmDetails",
+  contacts: "Contacts",
 };
 
 export const routesPath = {
@@ -16,4 +17,5 @@ export const routesPath = {
   littleShop: "/little-shop",
   films: "/films",
   filmDetails: "/films/:id",
+  contacts: "/contacts",
 };

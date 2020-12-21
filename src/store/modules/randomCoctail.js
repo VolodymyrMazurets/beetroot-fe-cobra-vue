@@ -1,19 +1,20 @@
 import { httpSevice } from "../../http";
+import { randomCoctaiConstats } from "../constants";
 
 const state = () => ({
   coctail: {},
 });
 const mutations = {
-  changeRandomCoctail(state, payload) {
+  [randomCoctaiConstats.CHANGE_RANDOM_COCTAIL](state, payload) {
     state.coctail = { ...payload };
   },
 };
 const actions = {
-  fetchRandomCoctail: async ({ commit }) => {
+  [randomCoctaiConstats.FETCH_RANDOM_COCTAIL]: async ({ commit }) => {
     try {
       const data = await httpSevice.getRandomCoctail();
       if (data) {
-        commit("changeRandomCoctail", data.drinks[0]);
+        commit(randomCoctaiConstats.CHANGE_RANDOM_COCTAIL, data.drinks[0]);
       }
     } catch (error) {
       console.error(error);

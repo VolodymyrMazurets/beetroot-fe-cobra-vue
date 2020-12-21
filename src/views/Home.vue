@@ -34,7 +34,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import TheModal from "../components/common/TheModal";
-
+import { randomCoctaiConstats } from "../store/constants";
 export default {
   components: {
     TheModal,
@@ -54,7 +54,7 @@ export default {
     ...mapState("randomCoctail", ["coctail"]),
   },
   methods: {
-    ...mapActions("randomCoctail", ["fetchRandomCoctail"]),
+    ...mapActions("randomCoctail", [randomCoctaiConstats.FETCH_RANDOM_COCTAIL]),
     showModal() {
       this.visible = true;
     },
@@ -67,7 +67,7 @@ export default {
   },
   async created() {
     this.loading = true;
-    await this.fetchRandomCoctail();
+    await this[randomCoctaiConstats.FETCH_RANDOM_COCTAIL]();
     setTimeout(() => {
       this.loading = false;
     }, 1000);
