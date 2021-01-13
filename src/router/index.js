@@ -23,6 +23,12 @@ const FilmDetails = () =>
 const Contacts = () =>
   import(/* webpackChunkName: "contacts" */ "../views/Contacts.vue");
 
+const Meals = () =>
+import(/* webpackChunkName: "meals" */ "../views/Meals/Meals.vue");
+
+const MealsDetails = () =>
+import(/* webpackChunkName: "mealsDetails" */ "../views/Meals/MealsDetails.vue");
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -65,6 +71,16 @@ const routes = [
     path: routesPath.contacts,
     name: routesNames.contacts,
     component: Contacts,
+  },
+  {
+    path: routesPath.meals,
+    name: routesNames.meals,
+    component: Meals,
+  },
+  {
+    path: routesPath.mealsDetails,
+    name: routesNames.mealsDetails,
+    component: MealsDetails,
   },
 ];
 

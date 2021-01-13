@@ -28,6 +28,11 @@
         @error="imageLoadError"
       />
       <img v-else src="https://picsum.photos/id/240/600/300" alt="" />
+      <the-button @click="showLoginError">Notify</the-button>
+      <div id="app">
+        <input v-model="text" />
+        <vue-markdown :source="text"></vue-markdown>
+      </div>
     </the-loader>
   </div>
 </template>
@@ -35,19 +40,27 @@
 import { mapActions, mapState } from "vuex";
 import TheModal from "../components/common/TheModal";
 import { randomCoctaiConstats } from "../store/constants";
+import VueMarkdown from "vue-markdown";
 export default {
   components: {
     TheModal,
+    VueMarkdown,
   },
   name: "Home",
   data() {
     return {
+      text: "",
       visible: false,
       ModalText: "Content of the modal",
       confirmLoading: false,
       src: "https://picsum.photos/id/100000/600/300",
       isExapleImgVisible: false,
       loading: true,
+      source: new Date().toLocaleTimeString(),
+      anchorAttrs: {
+        target: "_blank",
+        rel: "noopener noreferrer nofollow",
+      },
     };
   },
   computed: {
@@ -71,6 +84,17 @@ export default {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+    setInterval(() => {
+      this.source = new Date().toLocaleTimeString();
+    }, 1000);
+  },
+  notifications: {
+    showLoginError: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Login Failed",
+      message: "Failed to authenticate",
+      type: "success", // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
   },
 };
 </script>

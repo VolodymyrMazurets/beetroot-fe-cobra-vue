@@ -112,6 +112,10 @@ export default {
           name: "Contact Us",
           path: "/contacts",
         },
+        {
+          name: "Meals",
+          path: "/meals",
+        },
       ],
       query: "",
       visible: false,

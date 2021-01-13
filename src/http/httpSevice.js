@@ -1,6 +1,7 @@
-import { coctailsUrls, filmsUrls } from "../http";
+import { coctailsUrls, filmsUrls } from '../http';
 
-import axios from "axios";
+import axios from 'axios';
+import { mealsUrls } from './urls';
 
 class HttpSevice {
   // _fetchData = async (url, config = {}) => {
@@ -19,7 +20,7 @@ class HttpSevice {
         method,
         url,
         body,
-        headers
+        headers,
       });
       return data;
     } catch (error) {
@@ -30,11 +31,11 @@ class HttpSevice {
   getCategories = async () => {
     const { drinks: alcoholic } = await this._fetchData(coctailsUrls.alcoholic);
     const { drinks: ingredients } = await this._fetchData(
-      coctailsUrls.ingredients
+      coctailsUrls.ingredients,
     );
     const { drinks: glasses } = await this._fetchData(coctailsUrls.glasses);
     const { drinks: categories } = await this._fetchData(
-      coctailsUrls.categories
+      coctailsUrls.categories,
     );
     return {
       alcoholic,
@@ -49,6 +50,9 @@ class HttpSevice {
   getFilmsByQuery = (query, page) =>
     this._fetchData(filmsUrls.search(query, page));
   getFilmDetails = (id) => this._fetchData(filmsUrls.filmDetails(id));
+  getComplexSearchMeals = (query, number, offset) =>
+    this._fetchData(mealsUrls.complexSearch(query, number, offset));
+  getRecipeById = (id) => this._fetchData(mealsUrls.recipeInformation(id));
 }
 
 export const httpSevice = new HttpSevice();
